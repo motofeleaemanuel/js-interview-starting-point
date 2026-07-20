@@ -28,7 +28,7 @@ const MOCK_SHOPS = [
 
 export function ShopList() {
     return (
-        <Card className="w-full max-w-sm">
+        <Card className="w-full">
             <CardHeader>
                 <CardTitle>Shops</CardTitle>
             </CardHeader>
