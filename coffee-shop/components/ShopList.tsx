@@ -35,8 +35,8 @@ export function ShopList({ shops, loading, error }: ShopListProps) {
                 </div>) :
                     error ? (<span className="text-red-500 text-sm">{error}</span>) :
                         shops.length === 0 ? (<span className="text-muted-foreground">No Shops Found.</span>) :
-                            shops.map((shop) => (
-                                <Card key={shop.id} className="mb-4">
+                            shops.map((shop: Shop) => (
+                                <Card key={shop?.id} className="mb-4">
                                     <CardHeader>
                                         <CardTitle>
                                             {shop?.name}
@@ -45,7 +45,7 @@ export function ShopList({ shops, loading, error }: ShopListProps) {
                                     <CardContent>
                                         <div className="flex flex-col gap-1">
                                             <span>{shop?.x}, {shop?.y}</span>
-                                            <span>Distance: {shop.distance ? shop.distance : 'TBD'}</span>
+                                            <span>Distance: {shop?.distance ? shop?.distance : 'TBD'}</span>
                                         </div>
                                     </CardContent>
                                 </Card>
