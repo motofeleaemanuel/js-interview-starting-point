@@ -14,6 +14,10 @@ export const useFilters = (shops: Shop[]) => {
             return shop.name.toLowerCase().includes(searchName.toLowerCase())
         })
 
+        if (xCoord == null || yCoord == null) {
+            return filteredByNameShops
+        }
+
         const { success: isValidCoord, data: position } = positionSchema.safeParse({ x: xCoord, y: yCoord });
 
         if (!isValidCoord || !position) {
