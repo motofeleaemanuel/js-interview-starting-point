@@ -1,5 +1,6 @@
 'use client'
 import { calculateEuclideanDistance } from "@/lib/utils";
+import { positionSchema } from "@/lib/validators";
 import { Shop } from "@/types";
 import { useMemo, useState } from "react";
 
@@ -13,7 +14,9 @@ export const useFilters = (shops: Shop[]) => {
             return shop.name.toLowerCase().includes(searchName.toLowerCase())
         })
 
-        if (xCoord == null || yCoord == null) {
+        const { success: isValidCoord, data: position } = positionSchema.safeParse({ x: xCoord, y: yCoord });
+
+        if (!isValidCoord || !position) {
             return filteredByNameShops
         }
 
@@ -24,8 +27,8 @@ export const useFilters = (shops: Shop[]) => {
             return {
                 ...shop,
                 distance: calculateEuclideanDistance(
-                    xCoord,
-                    yCoord,
+                    position.x,
+                    position.y,
                     shop.x,
                     shop.y)
             }
