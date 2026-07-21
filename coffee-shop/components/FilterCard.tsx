@@ -30,7 +30,7 @@ interface FilterCardProps {
 
 export function FilterCard({ searchName, setSearchName, xCoord, yCoord, setXCoord, setYCoord }: FilterCardProps) {
     return (
-        <Card className="w-full max-w-sm">
+        <Card className="w-full lg:max-w-sm">
             <CardHeader>
                 <CardTitle>Filters</CardTitle>
             </CardHeader>
@@ -88,11 +88,11 @@ export function FilterCard({ searchName, setSearchName, xCoord, yCoord, setXCoor
                             />
                         </div>
                         <div className="grid gap-2">
-                            <Label>Shop Name</Label>
+                            <Label>Search</Label>
                             <Input
                                 id="shop-name"
                                 type="text"
-                                placeholder="Shop Name"
+                                placeholder="Search by name"
                                 maxLength={SEARCH_INPUT_MAX_LENGTH}
                                 value={searchName}
                                 onChange={(e) => setSearchName(e.target.value)}
