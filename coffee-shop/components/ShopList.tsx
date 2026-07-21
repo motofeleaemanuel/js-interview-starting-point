@@ -37,21 +37,29 @@ export function ShopList({ shops, loading, error }: ShopListProps) {
                 {error && <span className="text-red-500 text-sm">{error}</span>}
 
                 {!error && !loading && shops.length === 0 ? (<span className="text-muted-foreground">No Shops Found.</span>) :
-                    shops.map((shop: Shop) => (
-                        <Card key={shop?.id} className="mb-4">
-                            <CardHeader>
-                                <CardTitle>
-                                    {shop?.name}
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="flex flex-col gap-1">
-                                    <span>{shop?.x}, {shop?.y}</span>
-                                    <span>Distance: {shop?.distance ? shop?.distance : 'TBD'}</span>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    ))}
+                    shops.map((shop: Shop, index: number) => {
+                        const isTop3 = index < 3
+                        return (
+                            <Card key={shop?.id} className={`mb-4 ${isTop3 && shop.distance ? 'border-gray-300 border-2' : ''}`} >
+                                <CardHeader>
+                                    <CardTitle className="flex justify-between">
+                                        <div>
+                                            {shop?.name}
+                                        </div>
+                                        {isTop3 && shop.distance && <div className="text-gray-300">
+                                            Nearest
+                                        </div>}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="flex flex-col gap-1">
+                                        <span>{shop?.x}, {shop?.y}</span>
+                                        <span>Distance: {shop?.distance ? shop?.distance.toFixed(3) : 'TBD'}</span>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        )
+                    })}
             </CardContent>
         </Card>
     )
