@@ -1,8 +1,11 @@
+'use client'
 import { FilterCard } from "@/components/FilterCard"
 import { ShopList } from "@/components/ShopList"
-import { Button } from "@/components/ui/button"
+import { useShops } from "@/hooks/useShops"
 
 export default function Page() {
+  const { shops, loading, error } = useShops();
+
   return (
     <div className="max-w-4/6 m-auto p-4 flex flex-col">
       <div className="flex justify-center items-center mb-2">
@@ -13,7 +16,7 @@ export default function Page() {
           <FilterCard />
         </div>
         <div className="flex-1">
-          <ShopList />
+          <ShopList shops={shops} loading={loading} error={error} />
         </div>
       </div>
     </div>
