@@ -18,8 +18,8 @@ export const useShops = () => {
         try {
             const response = await apiFetch(COFFEE_SHOPS_API_URL)
             if (!response || !response.ok) {
-                setError("Error fetching shops")
-                return
+                // setError("Error fetching shops")
+                throw new Error("There was an error fetching the coffee shops")
             }
 
             const data: Shop[] = await response?.json();
